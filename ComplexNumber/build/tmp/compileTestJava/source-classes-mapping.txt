@@ -1,2 +1,0 @@
-com/tests/BasicTestsSuite.java
- com.tests.BasicTestsSuite
