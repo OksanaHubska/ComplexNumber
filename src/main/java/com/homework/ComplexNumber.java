@@ -28,6 +28,10 @@ public class ComplexNumber {
         im = builder.im;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public final double getIm() {
         return im;
     }
@@ -36,20 +40,25 @@ public class ComplexNumber {
         return real;
     }
 
-    public final static ComplexNumber summ( ComplexNumber cNumber1, ComplexNumber cNumber2 ) {
-        return new ComplexNumber.Builder().real(cNumber1.real + cNumber2.real).im(cNumber1.im + cNumber2.im).build();
+    public final ComplexNumber summ(ComplexNumber cNumberSumm ) {
+        return new ComplexNumber.Builder().real(this.real + cNumberSumm.real).im(this.im + cNumberSumm.im).build();
     }
 
-    public final static ComplexNumber sub( ComplexNumber cNumber1, ComplexNumber cNumber2 ) {
-        return new ComplexNumber.Builder().real(cNumber1.real - cNumber2.real).im(cNumber1.im - cNumber2.im).build();
+    public final ComplexNumber sub(ComplexNumber cNumberSub ) {
+        return new ComplexNumber.Builder().real(this.real - cNumberSub.real).im(this.im - cNumberSub.im).build();
     }
 
-    public final static ComplexNumber mult( ComplexNumber cNumber1, ComplexNumber cNumber2 ) {
-        return new ComplexNumber.Builder().real((cNumber1.real * cNumber2.real) - (cNumber1.im * cNumber2.im)).im((cNumber1.im * cNumber2.real) + (cNumber1.real * cNumber2.im)).build();
+    public final ComplexNumber mult( ComplexNumber cNumberMult ) {
+        return new ComplexNumber.Builder().real((this.real * cNumberMult.real) - (this.im * cNumberMult.im)).im((this.im * cNumberMult.real) + (this.real * cNumberMult.im)).build();
     }
 
-    public final static ComplexNumber div( ComplexNumber cNumber1, ComplexNumber cNumber2 ) {
-        return new ComplexNumber.Builder().real(((cNumber1.real * cNumber2.real) + (cNumber1.im * cNumber2.im)) / (cNumber2.real * cNumber2.real) + (cNumber2.im * cNumber2.im)).im(((cNumber1.im * cNumber2.real) - (cNumber1.real * cNumber2.im)) / (cNumber2.real * cNumber2.real) + (cNumber2.im * cNumber2.im)).build();
+    public final ComplexNumber div( ComplexNumber cNumberDiv ) {
+        return new ComplexNumber.Builder().real(((this.real * cNumberDiv.real) + (this.im * cNumberDiv.im)) / (cNumberDiv.real * cNumberDiv.real) + (cNumberDiv.im * cNumberDiv.im)).im(((this.im * cNumberDiv.real) - (this.real * cNumberDiv.im)) / (cNumberDiv.real * cNumberDiv.real) + (cNumberDiv.im * cNumberDiv.im)).build();
+    }
+
+    @Override
+    public String toString() {
+        return real + " + i*" + im ;
     }
 
     @Override
@@ -60,4 +69,5 @@ public class ComplexNumber {
         return Double.compare(that.real, real) == 0 &&
                 Double.compare(that.im, im) == 0;
     }
+
 }
